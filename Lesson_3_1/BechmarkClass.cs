@@ -11,19 +11,19 @@ namespace Lesson_3_1
         public static PointStruct PointStructOne { get; set; }
         public static PointStruct PointStructTwo { get; set; }
 
-        public int[] ValueArray { get; set; }
+        public PointClass[] ClassArray { get; set; }
+        public PointStruct[] StructArray { get; set; }
         public BechmarkClass()
         {
-            ValueArray = new int[8];
-            Random random = new Random();
-            for (int i = 0; i < ValueArray.Length; i++)
+            ClassArray = new PointClass[100];
+            StructArray = new PointStruct[100];
+            for (int i = 0; i < 100; i++)
             {
-                ValueArray[i] = random.Next(0, 100);
+                int x = new Random().Next(0, 100);
+                int y = new Random().Next(0, 100);
+                ClassArray[i] = new PointClass { X = x, Y = y };
+                StructArray[i] = new PointStruct { X = x, Y = y };
             }
-            PointClassOne = new PointClass { X = ValueArray[0], Y = ValueArray[1] };
-            PointClassTwo = new PointClass { X = ValueArray[2], Y = ValueArray[3] };
-            PointStructOne = new PointStruct { X = ValueArray[4], Y = ValueArray[5] };
-            PointStructTwo = new PointStruct { X = ValueArray[6], Y = ValueArray[7] };
         }
 
         // PointClass — координаты типа float
@@ -62,25 +62,37 @@ namespace Lesson_3_1
         [Benchmark]
         public void TestClassFloat()
         {
-            PointDistance(PointClassOne, PointClassTwo);
+            for (int i = 0; i < ClassArray.Length; i+=2)
+            {
+                PointDistance(ClassArray[i], ClassArray[i+1]);
+            }
         }
 
         [Benchmark]
         public void TestStructFloat()
         {
-            PointDistance(PointStructOne, PointStructTwo);
+            for (int i = 0; i < StructArray.Length; i += 2)
+            {
+                PointDistance(StructArray[i], StructArray[i + 1]);
+            }
         }
 
         [Benchmark]
         public void TestStructDouble()
         {
-            PointDistanceDouble(PointStructOne, PointStructTwo);
+            for (int i = 0; i < StructArray.Length; i += 2)
+            {
+                PointDistanceDouble(StructArray[i], StructArray[i + 1]);
+            }
         }
 
         [Benchmark]
         public void TestStructFloatShort()
         {
-            PointDistanceShort(PointStructOne, PointStructTwo);
+            for (int i = 0; i < StructArray.Length; i += 2)
+            {
+                PointDistanceShort(StructArray[i], StructArray[i + 1]);
+            }
         }
 
     }
