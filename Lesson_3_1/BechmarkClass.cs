@@ -10,12 +10,20 @@ namespace Lesson_3_1
         public static PointClass PointClassTwo { get; set; }
         public static PointStruct PointStructOne { get; set; }
         public static PointStruct PointStructTwo { get; set; }
+
+        public int[] ValueArray { get; set; }
         public BechmarkClass()
         {
-            PointClassOne = new PointClass { X = 2, Y = 4 };
-            PointClassTwo = new PointClass { X = 37, Y = 15 };
-            PointStructOne = new PointStruct { X = 2, Y = 4 };
-            PointStructTwo = new PointStruct { X = 37, Y = 15 };
+            ValueArray = new int[8];
+            Random random = new Random();
+            for (int i = 0; i < ValueArray.Length; i++)
+            {
+                ValueArray[i] = random.Next(0, 100);
+            }
+            PointClassOne = new PointClass { X = ValueArray[0], Y = ValueArray[1] };
+            PointClassTwo = new PointClass { X = ValueArray[2], Y = ValueArray[3] };
+            PointStructOne = new PointStruct { X = ValueArray[4], Y = ValueArray[5] };
+            PointStructTwo = new PointStruct { X = ValueArray[6], Y = ValueArray[7] };
         }
 
         // PointClass — координаты типа float
