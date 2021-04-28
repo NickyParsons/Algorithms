@@ -99,6 +99,7 @@ namespace Lesson_1_3
         }
         static void Main()
         {
+            // Тесты
             TestCase testCase1 = new TestCase { InputNumber = 0, ExpectedResult = 0, ExpectedException = null };
             Test(testCase1);
             TestCase testCase2 = new TestCase { InputNumber = 1, ExpectedResult = 1, ExpectedException = null };
